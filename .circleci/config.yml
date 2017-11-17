@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: circleci/node:7.10
 
-    working_directory: ~/
+    working_directory: ~/temp
 
     steps:
       - checkout
@@ -20,11 +20,15 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm install
+      - run: sudo npm install -g grunt-cli
+      
+      - run: sudo npm install -g
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+        
+      - run: echo $credentials >> ~/temp/credentials.json
         
       - run: grunt production
