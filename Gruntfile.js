@@ -46,10 +46,10 @@ module.exports = function(grunt){
                     allow: '/'
                 },
                 {
-                    sitemap: ['http://kleips.com/sitemap.xml']
+                    sitemap: ['http://www.kleips.com/sitemap.xml']
                 },
                 {
-                    host: 'kleips.com'
+                    host: 'www.kleips.com'
                 },
                 ]
             }
@@ -65,7 +65,7 @@ module.exports = function(grunt){
             },
             production: {
                 siteRoot: 'public/',
-                homepage: 'http://kleips.com'
+                homepage: 'http://www.kleips.com'
             }
         },
         aws_s3: {
