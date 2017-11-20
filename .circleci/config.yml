@@ -20,8 +20,8 @@ jobs:
         - v2-dependencies-
       
       - run: sudo npm install -g hexo-cli
-        - sudo npm install -g grunt-cli
-        - sudo npm install --save-dev
+      - run: sudo npm install -g grunt-cli
+      - run: sudo npm install --save-dev
         
       - save_cache:		
         paths:		
