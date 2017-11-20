@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - checkout
+      
+      - run: sudo npm install -g hexo-cli
 
       - run: sudo npm install -g grunt-cli
       
