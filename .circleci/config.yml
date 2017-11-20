@@ -13,20 +13,17 @@ jobs:
     steps:
       - checkout
       
-      # Download and Cache Dependencies
       - restore_cache:
-        keys:
-        - v2-dependencies-{{ checksum "package.json" }}
-        - v2-dependencies-
+          key: dependency-cache-{{ checksum "package.json" }}
       
       - run: sudo npm install -g hexo-cli
       - run: sudo npm install -g grunt-cli
       - run: sudo npm install --save-dev
         
-      - save_cache:		
-        paths:		
-            - node_modules		
-        key: v2-dependencies-{{ checksum "package.json" }}
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
         
       - run: echo $credentials >> ~/temp/credentials.json
         
