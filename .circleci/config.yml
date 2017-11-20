@@ -15,7 +15,7 @@ jobs:
 
       - run: sudo npm install -g grunt-cli
       
-      - run: sudo npm install -g
+      - run: sudo npm install --save-dev
         
       - run: echo $credentials >> ~/temp/credentials.json
         
