@@ -59,7 +59,7 @@ google_analytics:
 
 # ========== Others ========== #
 # favicon
-favicon: /assests/favicon.ico
+favicon: /assets/favicon/favicon.ico
 # truncate length (the default is 300)
 truncate_length:
 # enable toc
