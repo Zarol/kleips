@@ -2,7 +2,7 @@
     <article class="article-entry">
         <%- page.content %>
     </article>
-    <!-- 前后页  -->
+    <!-- Front & Back Pages  -->
     <ul class="post-pager">
         <% if (page.prev){ %>
             <li class="next">
@@ -21,11 +21,8 @@
             </li>
         <% } %>
     </ul>
-    <!-- 评论插件 -->
-    <%- partial('_partial/comment/livere') %>
+    <!-- Comment Plug-In -->
     <%- partial('_partial/comment/disqus') %>
     <%- partial('_partial/comment/gitment') %>
-    <%- partial('_partial/comment/changyan') %>
-    <%- partial('_partial/comment/youyan') %>
     <%- partial('_partial/comment/custom') %>
 </main>

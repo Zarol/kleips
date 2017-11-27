@@ -20,18 +20,18 @@
                         var u = window.navigator.userAgent;
                         return {
                             userAgent: u,
-                            trident: u.indexOf('Trident') > -1, //IE内核
-                            presto: u.indexOf('Presto') > -1, //opera内核
-                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-                            iPad: u.indexOf('iPad') > -1, //是否为iPad
-                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                            trident: u.indexOf('Trident') > -1, //Internet Explorer
+                            presto: u.indexOf('Presto') > -1, //Opera
+                            webKit: u.indexOf('AppleWebKit') > -1, //Apple, Google
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //Firefox
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //Mobile
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //iOS
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //Android, UC
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //iPhone, QQ
+                            iPad: u.indexOf('iPad') > -1, //iPad
+                            webApp: u.indexOf('Safari') == -1, //Web App
+                            weixin: u.indexOf('MicroMessenger') == -1, //WeChat
+                            uc: u.indexOf('UCBrowser') > -1 //UC
                         };
                     }()
                 }
@@ -53,7 +53,7 @@
                 }
                 
             console.log("userAgent:" + browser.versions.userAgent);
-            // UC不支持跨域，所以直接显示
+            // UC does not support cross-domain, direct display
             if (browser.versions.uc) {
                 console.log("UCBrowser");
                 fontLoaded();
@@ -62,13 +62,13 @@
                     custom: {
                         families: ['Oswald-Regular']
                     },
-                    loading: function () {  //所有字体开始加载
+                    loading: function () {  //All fonts loading
                         // console.log('loading');
                     },
-                    active: function () {  //所有字体已渲染
+                    active: function () {  //All fonts rendered
                         fontLoaded();
                     },
-                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                    inactive: function () { //Fonts failed preload, invalid or no-support
                         console.log('inactive: timeout');
                         fontLoaded();
                     },
@@ -97,16 +97,6 @@
     <div class="back-top">&#xe639;</div>
     <%- partial('_partial/sidebar/base-sidebar', {}, {cache: true}) %>
     <%- partial('./js-info.ejs') %>
-    <!-- 不蒜子  -->
-    <% if (theme.busuanzi) { %>
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <% } %>
-    <!-- CNZZ统计  -->
-    <% if (theme.CNZZ_analytics) { %>
-    <div style="display: none">
-        <script src="https://s13.cnzz.com/z_stat.php?id=<%- theme.CNZZ_analytics %>&web_id=<%- theme.CNZZ_analytics %>" language="JavaScript"></script>
-        <% } %>
-    </div>
     </body>
 </html>
 

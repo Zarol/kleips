@@ -1,45 +1,45 @@
 <div class="site-intro">
     <% var bgURL; %>
-    <!-- 主页  -->
+    <!-- Homepage  -->
     <% if (is_home()) { %>
     <% bgURL = theme.site_header_image; %>
-    <!-- 文章页  -->
+    <!-- Article Page  -->
     <% } else if (is_post()) { %>
     <% bgURL = page.header_image || theme.post_header_image || theme.site_header_image; %>
-    <!-- 404页  -->
+    <!-- 404  -->
     <% } else if (page.layout === "404") { %>
     <% bgURL = theme._404_image || theme.site_header_image; %>
-    <!-- about页 -->
+    <!-- About Page -->
     <% } else if (page.layout === "about") { %>
     <% bgURL = theme.about.image || theme.site_header_image; %>
     <% } %>        
     <div class="site-intro-img" style="background-image: url(<%- url_for(bgURL) %>)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
-        <!-- 标题  -->
+        <!-- Title  -->
         <h1 class="intro-title">
-            <!-- 主页  -->
+            <!-- Title Page  -->
             <% if (is_home()) { %>
             <%- theme.main_title || config.title%>
-            <!-- 文章页  -->
+            <!-- Article Page  -->
             <% } else if(is_post()) { %>
             <%- truncate(strip_html(page.title), {length: 80, omission: '...'}) || '[Untitled Post]' %>
             <!-- 404 -->
             <% } else if(page.layout === "404") { %>
             <%- page.title || '[404]'%>
-            <!-- about -->
+            <!-- About Page -->
             <% } else if(page.layout === "about" ) { %>
             <%- page.title || 'About' %>
             <% } %>
         </h1>
-        <!-- 副标题 -->
+        <!-- Subtitle -->
         <p class="intro-subtitle">
-            <!-- 主页副标题  -->
+            <!-- Home Page  -->
             <% if (is_home()) { %>
             <% if(typeof theme.subtitle === 'string') { %>
                 <%- theme.subtitle %>
             <% } %>
-            <!-- 文章页  -->
+            <!-- Article Page  -->
             <% } else if (is_post()) { %>
             <% if(typeof page.subtitle === 'string') { %>
                 <%- page.subtitle %>
@@ -49,9 +49,9 @@
                 <%- page.description %>
             <% } %>
         </p>
-        <!-- 文章页meta -->
+        <!-- Article Page Meta -->
         <% if(is_post()) { %>
-            <!-- 文章页标签  -->
+            <!-- Article Page Labels  -->
             <% if(page.tags.length) { %>
                 <%- partial('base-title-tags', {
                     currPost: page,
