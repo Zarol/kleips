@@ -293,17 +293,17 @@ ul, li {
 }
 
 ::selection {
-	background: #c19b8d;
+	background: #1693a5;
 	color: #eee
 }
 
 ::-moz-selection {
-	background: #c19b8d;
+	background: #1693a5;
 	color: #eee
 }
 
 ::-webkit-selection {
-	background: #c19b8d;
+	background: #1693a5;
 	color: #eee
 }
 
@@ -439,7 +439,7 @@ ul, li {
 }
 
 .blog-title a:hover {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .header-sidebar-menu {
@@ -488,7 +488,7 @@ ul, li {
 }
 
 .home-link:hover {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .home-link-hide {
@@ -858,7 +858,7 @@ ul, li {
 }
 
 .copyright a {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .power {
@@ -1189,16 +1189,16 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 }
 
 .archive-post-item:hover, .tag-post-item:hover {
-	border-left-color: #c19b8d
+	border-left-color: #1693a5
 }
 
 .archive-post-item:hover .archive-post-date, .tag-post-item:hover .archive-post-date, .archive-post-item:hover .tag-post-date, .tag-post-item:hover .tag-post-date, .archive-post-item:hover .archive-post-title, .tag-post-item:hover .archive-post-title, .archive-post-item:hover .tag-post-title, .tag-post-item:hover .tag-post-title {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .archive-year, .total-archive {
 	font: 1.2rem "Oswald-Regular", "Microsoft Yahei", "Source Sans Pro", Arial, sans-serif;
-	color: #c19b8d
+	color: #1693a5
 }
 
 .archive-year {
@@ -1243,11 +1243,11 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 }
 
 .sidebar-tag-name:hover {
-	border-color: #c19b8d
+	border-color: #1693a5
 }
 
 .sidebar-tag-name:hover a {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .sidebar-tag-name a {
@@ -1260,11 +1260,11 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 }
 
 .sidebar-tag-name-focus {
-	border-color: #c19b8d
+	border-color: #1693a5
 }
 
 .sidebar-tag-name-focus a {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .sidebar-tag-list {
@@ -1302,7 +1302,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 	justify-content: space-between;
 	align-items: center;
 	border-top: 3px solid #fff;
-	background-color: #222
+	background-color: #333
 }
 
 .sidebar-header::after {
@@ -1312,7 +1312,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 	width: 2px;
 	top: 0;
 	left: calc(100% - 2px);
-	background-color: #c19b8d;
+	background-color: #1693a5;
 	transform: translate3d(0, 0, 0);
 	transition: all 0.2s ease-in-out .0s
 }
@@ -1366,7 +1366,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 	top: 0;
 	left: 0;
 	transition: all 0.2s ease-out .0s;
-	background-color: #222;
+	background-color: #333;
 	overflow-x: hidden;
 	transform: translate3d(0, 0, 0)
 }
@@ -1375,7 +1375,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 	overflow-x: hidden;
 	overflow-y: auto;
 	flex-shrink: 0;
-	background-color: #222;
+	background-color: #333;
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch
 }
@@ -1423,7 +1423,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 .abstract-title {
 	position: relative;
 	font: bolder 1rem/1.5rem "Source Sans Pro", "Microsoft Yahei", "Helvetica Neue", Arial, sans-serif;
-	color: #c19b8d;
+	color: #1693a5;
 	padding-bottom: 0.5rem;
 	margin: 0.2rem 0
 }
@@ -1441,7 +1441,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 	width: 0;
 	left: 50%;
 	top: 103%;
-	background-color: #c19b8d
+	background-color: #1693a5
 }
 
 .abstract-title span:last-of-type:hover::after {
@@ -1615,7 +1615,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 }
 
 .post-pager li:hover span:last-of-type {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .post-pager li:hover span:first-of-type {
@@ -1707,7 +1707,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 .article-entry h2::before {
 	content: "#";
 	margin-right: 2px;
-	color: #c19b8d;
+	color: #1693a5;
 	font: 1em "Source Sans Pro", "Microsoft Yahei", "Helvetica Neue", Arial, sans-serif;
 	font-weight: bold
 }
@@ -1715,7 +1715,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 .article-entry h3::before {
 	content: "#";
 	margin-right: 2px;
-	color: #c19b8d;
+	color: #1693a5;
 	font: 1em "Source Sans Pro", "Microsoft Yahei", "Helvetica Neue", Arial, sans-serif;
 	font-weight: bold
 }
@@ -1723,7 +1723,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 .article-entry h4::before {
 	content: "#";
 	margin-right: 2px;
-	color: #c19b8d;
+	color: #1693a5;
 	font: 1em "Source Sans Pro", "Microsoft Yahei", "Helvetica Neue", Arial, sans-serif;
 	font-weight: bold
 }
@@ -1754,7 +1754,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 	padding: 10px 20px;
 	position: relative;
 	background-color: #f6f6f6;
-	border-left: 3px solid #c19b8d
+	border-left: 3px solid #1693a5
 }
 
 .article-entry blockquote p {
@@ -1787,13 +1787,13 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 }
 
 .article-entry a {
-	color: #c19b8d;
+	color: #1693a5;
 	padding: 0 0 0 2px;
 	word-break: break-all
 }
 
 .article-entry a:hover {
-	border-bottom: 1px solid #c19b8d
+	border-bottom: 1px solid #1693a5
 }
 
 .article-entry a.fancybox {
@@ -1820,7 +1820,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 }
 
 .toc-catalog:hover {
-	color: #c19b8d
+	color: #1693a5
 }
 
 .catalog-icon {
@@ -1847,7 +1847,7 @@ html::-webkit-scrollbar-track:hover, .sidebar-archive::-webkit-scrollbar-track:h
 }
 
 .toc a:hover {
-	color: #c19b8d !important
+	color: #1693a5 !important
 }
 
 .toc-fixed {
