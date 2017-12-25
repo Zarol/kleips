@@ -33,6 +33,9 @@ function uploadDir(dir) {
     let key = path.relative('public/', filePath);
 
     // Generate hash
+    // @TODO -- Turns out AWS.S3 uses MD5 for their hash and stores it
+    // inside of a parameter called "ETag". Instead, calculate the MD5
+    // and use ListObjectsV2 to see what files to upload.
     let fileHash = hasha.fromFileSync(filePath, { algorithm: 'sha1' });
 
     // File is in the cache, no need to upload
