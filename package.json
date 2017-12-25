@@ -26,6 +26,10 @@
     "grunt-sitemap": "^1.2.1"
   },
   "scripts": {
+    "shell:clean": "hexo clean",
+    "shell:generate": "hexo generate",
+    "shell:server": "hexo server",
+
     "robotstxt": "node scripts/generate-robotstxt.js",
     "robotstxt:dev": "npm run robotstxt -- dev",
     "robotstxt:staging": "npm run robotstxt -- staging",
