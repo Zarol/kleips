@@ -1,5 +1,5 @@
-const fs = require("fs");
-const robotstxt = require("generate-robotstxt").default;
+const fs = require('fs');
+const robotstxt = require('generate-robotstxt').default;
 
 async function main() {
   let content;
@@ -8,39 +8,39 @@ async function main() {
     case 'staging':
       content = await robotstxt({
         policy: [{
-          userAgent: "*",
-          disallow: "/",
+          userAgent: '*',
+          disallow: '/',
         }]
       });
       break;
     case 'prod':
       content = await robotstxt({
         policy: [{
-          userAgent: "*",
-          allow: "/",
+          userAgent: '*',
+          allow: '/',
         }],
-        sitemap: "https://www.kleips.com/sitemap.xml",
-        host: "www.kleips.com"
+        sitemap: 'https://www.kleips.com/sitemap.xml',
+        host: 'www.kleips.com'
       });
       break;
     case 'dev':
     default:
       content = await robotstxt({
         policy: [{
-          userAgent: "*",
-          disallow: "/",
+          userAgent: '*',
+          disallow: '/',
         }],
-        sitemap: "http://localhost:4000/sitemap.xml",
-        host: "localhost:4000"
+        sitemap: 'http://localhost:4000/sitemap.xml',
+        host: 'localhost:4000'
       });
       break;
   }
 
-  fs.writeFile("public/robots.txt", content, function(err) {
+  fs.writeFile('public/robots.txt', content, function(err) {
     if (err) {
       return console.log(err);
     }
-    console.log("The robots.txt file was saved!");
+    console.log('The robots.txt file was saved!');
   });
 }
 
