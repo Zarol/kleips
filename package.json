@@ -16,7 +16,9 @@
     "hexo-renderer-ejs": "^0.3.0",
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0"
+    "hexo-server": "^0.2.0",
+    "sitemap": "^1.13.0",
+    "walkdir": "0.0.12"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
@@ -29,10 +31,13 @@
     "shell:clean": "hexo clean",
     "shell:generate": "hexo generate",
     "shell:server": "hexo server",
-
     "robotstxt": "node scripts/generate-robotstxt.js",
     "robotstxt:dev": "npm run robotstxt -- dev",
     "robotstxt:staging": "npm run robotstxt -- staging",
-    "robotstxt:prod": "npm run robotstxt -- prod"
+    "robotstxt:prod": "npm run robotstxt -- prod",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "sitemap:dev": "npm run sitemap -- dev",
+    "sitemap:staging": "npm run sitemap -- staging",
+    "sitemap:prod": "npm run sitemap -- prod"
   }
 }
