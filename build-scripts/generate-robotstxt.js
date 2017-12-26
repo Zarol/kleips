@@ -1,5 +1,6 @@
 const fs = require('fs');
 const robotstxt = require('generate-robotstxt').default;
+const chalk = require('chalk');
 
 async function main() {
   let content;
@@ -40,7 +41,7 @@ async function main() {
     if (err) {
       return console.log(err);
     }
-    console.log('The robots.txt file was saved!');
+    console.log(chalk.green('INFO  ') + 'Generated: ' + chalk.red('robots.txt'));
   });
 }
 

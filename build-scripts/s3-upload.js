@@ -4,6 +4,7 @@ const crypto = require('crypto')
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3({ signatureVersion: 'v4' });
 const mime = require('mime');
+const chalk = require('chalk');
 
 function uploadFile(bucket, key, content) {
   s3.putObject({
@@ -14,7 +15,7 @@ function uploadFile(bucket, key, content) {
     CacheControl: 'max-age=630720000, public',
     Expires: new Date(Date.now() + 63072000000)
   }, (res) => {
-    console.log('Successfully uploaded: ' + key);
+    console.log(chalk.green('INFO  ') + 'Uploaded: ' + chalk.red(key));
   });
 }
 
@@ -33,7 +34,7 @@ function mapDiff(local, remote) {
       continue;
     }
     // Local file exists remotely, same Etag (same file)
-    console.log("Skipping unchanged file: " + key);
+    console.log(chalk.green('INFO  ') + 'Unchanged: ' + chalk.yellow(key));
   }
   return filesToUpload;
 }

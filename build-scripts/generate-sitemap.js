@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const sitemap = require('sitemap');
+const chalk = require('chalk');
 
 function buildUrls(hostname, dir, arr) {
   let folder = fs.readdirSync(dir);
@@ -83,7 +84,7 @@ async function main() {
     if (err) {
       return console.log(err);
     }
-    console.log('The sitemap.xml file was saved!');
+    console.log(chalk.green('INFO  ') + 'Generated: ' + chalk.red('sitemap.xml'));
   });
 }
 
