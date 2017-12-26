@@ -1,16 +1,45 @@
 const fs = require('fs');
 const path = require('path');
-const util = require('util');
+const crypto = require('crypto')
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3({ signatureVersion: 'v4' });
-const flatCache = require('flat-cache');
-const hasha = require('hasha');
-const cache = flatCache.load('public', path.resolve('cache/'));
-var bucket = '';
+const mime = require('mime');
 
-function uploadDir(dir) {
-  let folderPath = path.join('./', dir);
-  let folder = fs.readdirSync(folderPath);
+function uploadFile(bucket, key, content) {
+  s3.putObject({
+    Bucket: bucket,
+    Key: key,
+    Body: content,
+    ContentType: mime.getType(key),
+    CacheControl: 'max-age=630720000, public',
+    Expires: new Date(Date.now() + 63072000000)
+  }, (res) => {
+    console.log('Successfully uploaded: ' + key);
+  });
+}
+
+function mapDiff(local, remote) {
+  let filesToUpload = [];
+
+  for (let key in local) {
+    // Local file does not exist remotely (new file)
+    if (remote[key] === undefined) {
+      filesToUpload.push(key);
+      continue;
+    }
+    // Local file exists remotely, different Etag (changed file)
+    if (remote[key] !== null && remote[key] !== local[key]) {
+      filesToUpload.push(key);
+      continue;
+    }
+    // Local file exists remotely, same Etag (same file)
+    console.log("Skipping unchanged file: " + key);
+  }
+  return filesToUpload;
+}
+
+function walkDir(dir, map) {
+  let folder = fs.readdirSync(dir);
 
   // Base case
   if (!folder || folder.length === 0) {
@@ -19,48 +48,26 @@ function uploadDir(dir) {
 
   // Iterate through every path in the folder
   folder.forEach(function(file) {
-    let filePath = path.join(folderPath, file);
+    let filePath = path.join(dir, file);
 
     // Recursively call directories
     if (fs.lstatSync(filePath).isDirectory()) {
-      uploadDir(filePath);
+      walkDir(filePath, map);
       return;
     }
-
-    content = fs.readFileSync(filePath);
 
     // The key is the full file path, since this is the S3 key
     let key = path.relative('public/', filePath);
 
-    // Generate hash
-    // @TODO -- Turns out AWS.S3 uses MD5 for their hash and stores it
-    // inside of a parameter called "ETag". Instead, calculate the MD5
-    // and use ListObjectsV2 to see what files to upload.
-    let fileHash = hasha.fromFileSync(filePath, { algorithm: 'sha1' });
-
-    // File is in the cache, no need to upload
-    if (cache.getKey(key) === fileHash) {
-      console.log('Skipping unmodified file: ' + key);
-      return;
-    }
-
-    // Set new hash
-    cache.setKey(key, fileHash);
-
-    // Upload to S3
-    s3.putObject({
-      Bucket: 'www.kleips.com',
-      Key: key,
-      Body: content,
-      CacheControl: 'max-age=630720000, public',
-      Expires: new Date(Date.now() + 63072000000)
-    }, (res) => {
-      console.log('Successfully uploaded: ' + key);
-    });
+    // Generate hash - ETag uses MD5
+    let hash = crypto.createHash('md5');
+    hash.update(fs.readFileSync(filePath), 'utf8');
+    map[key] = `"${hash.digest('hex')}"`;
   });
 }
 
 function main() {
+  let bucket = '';
   switch (process.argv[2]) {
     case 'staging':
       bucket = 'staging.kleips.com';
@@ -72,8 +79,30 @@ function main() {
       console.log('Invalid environment.');
       return;
   }
-  uploadDir("public/");
-  cache.save();
+  // Build map of local files
+  let localFiles = {};
+  walkDir("public/", localFiles);
+
+  // This works up to 1000 objects, will need to maybe fix this
+  s3.listObjectsV2({
+    Bucket: bucket
+  }, function(err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    // Build map of remote files
+    let remoteFiles = data.Contents.reduce(function(map, obj) {
+      map[obj.Key] = obj.ETag;
+      return map;
+    }, {});
+
+    let filesToUpload = mapDiff(localFiles, remoteFiles);
+
+    filesToUpload.forEach(function(file) {
+      uploadFile(bucket, file,
+        fs.readFileSync(path.join('public/', file)));
+    });
+  });
 }
 
 main();
