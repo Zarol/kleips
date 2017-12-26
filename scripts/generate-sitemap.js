@@ -1,37 +1,50 @@
 const fs = require('fs');
 const path = require('path');
 const sitemap = require('sitemap');
-const walk = require('walkdir');
 
-function buildUrls(hostname) {
-  let urls = [];
-  walk.sync('public/', function(file) {
-    //Skip files that aren't html files
+function buildUrls(hostname, dir, arr) {
+  let folder = fs.readdirSync(dir);
+
+  // Base case
+  if (!folder || folder.length === 0) {
+    return;
+  }
+
+  // Iterate through every path in the folder
+  folder.forEach(function(file) {
+    let filePath = path.join(dir, file);
+
+    // Recursively call directories
+    if (fs.lstatSync(filePath).isDirectory()) {
+      buildUrls(hostname, filePath, arr);
+      return;
+    }
+
+    // Skip files that aren't html files
     if (file.indexOf('.html') === -1) {
       return;
     }
 
-    let filepath = path.relative('public/', file);
+    let webPath = path.relative('public/', filePath);
 
     //Pretty Urls
-    if (path.basename(filepath) === 'index.html') {
-      let dir = path.dirname(filepath);
-      filepath = dir === '.' ? '' : dir;
+    if (path.basename(webPath) === 'index.html') {
+      let d = path.dirname(webPath);
+      webPath = d === '.' ? '' : d;
     } else {
-      filepath = path.join(
-        path.dirname(filepath),
-        path.basename(filepath, '.html')
+      webPath = path.join(
+        path.dirname(webPath),
+        path.basename(webPath, '.html')
       );
     }
 
-    urls.push(hostname + filepath);
+    arr.push(hostname + webPath);
   });
-
-  return urls;
 }
 
 function buildSitemapUrls(hostname) {
-  let urls = buildUrls(hostname);
+  let urls = [];
+  buildUrls(hostname, 'public/', urls);
   let sitemapUrls = [];
 
   urls.forEach(function(url) {
