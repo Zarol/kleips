@@ -32,16 +32,19 @@
     "shell:clean": "hexo clean",
     "shell:generate": "hexo generate",
     "shell:server": "hexo server",
-    "robotstxt": "node scripts/generate-robotstxt.js",
+    "robotstxt": "node build-scripts/generate-robotstxt.js",
     "robotstxt:dev": "npm run robotstxt -- dev",
     "robotstxt:staging": "npm run robotstxt -- staging",
     "robotstxt:prod": "npm run robotstxt -- prod",
-    "sitemap": "node scripts/generate-sitemap.js",
+    "sitemap": "node build-scripts/generate-sitemap.js",
     "sitemap:dev": "npm run sitemap -- dev",
     "sitemap:staging": "npm run sitemap -- staging",
     "sitemap:prod": "npm run sitemap -- prod",
-    "s3upload": "node scripts/s3-upload.js",
+    "s3upload": "node build-scripts/s3-upload.js",
     "s3upload:staging": "npm run s3upload -- staging",
-    "s3upload:prod": "npm run s3upload -- prod"
+    "s3upload:prod": "npm run s3upload -- prod",
+    "start": "npm run shell:clean && npm run shell:generate && npm run sitemap:dev && npm run robotstxt:dev && npm run shell:server",
+    "staging": "npm run shell:clean && npm run shell:generate && npm run sitemap:staging && npm run robotstxt:staging && npm run s3upload:staging",
+    "production": "npm run shell:clean && npm run shell:generate && npm run sitemap:prod && npm run robotstxt:prod && npm run s3upload:prod"
   }
 }
