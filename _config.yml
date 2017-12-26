@@ -41,13 +41,13 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-  
+
 # Home Page Settings
 index_generator:
   path: ''
   per_page: 10
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -67,7 +67,7 @@ theme: theme
 # Deployment
 deploy:
   type:
-  
+
 # Theme
 jsonContent:
   meta: false
