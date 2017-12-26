@@ -34,7 +34,7 @@
     "sitemap:dev": "npm run sitemap -- dev",
     "sitemap:staging": "npm run sitemap -- staging",
     "sitemap:prod": "npm run sitemap -- prod",
-    "s3upload": "node build_scripts/s3-uploagd.js",
+    "s3upload": "node build_scripts/s3-upload.js",
     "s3upload:staging": "npm run s3upload -- staging",
     "s3upload:prod": "npm run s3upload -- prod",
     "start": "npm run shell:clean && npm run shell:generate && npm run sitemap:dev && npm run robotstxt:dev && npm run shell:server",
