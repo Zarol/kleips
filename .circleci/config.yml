@@ -12,19 +12,16 @@ jobs:
 
     steps:
       - checkout
-      
+
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      
+
       - run: sudo npm install -g hexo-cli
-      - run: sudo npm install -g grunt-cli
       - run: sudo npm install --save-dev
-        
+
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-        
-      - run: echo $credentials >> ~/temp/credentials.json
-        
-      - run: grunt production
+
+      - run: npm run production
