@@ -15,7 +15,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
 
       - run: sudo npm install -g hexo-cli
-      - run: sudo npm install --save-dev
+      - run: sudo npm install
 
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
