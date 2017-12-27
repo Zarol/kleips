@@ -50,16 +50,16 @@ jobs:
         name: Deploy
         command: |
           case $CIRCLE_BRANCH in
-              master)
-                npm run deploy:production
-                ;;
-              develop)
-                npm run deploy:staging
-                ;;
-              *)
-                echo 'Skipping deployment.'
-                ;;
-            esac
+            master)
+              npm run deploy:production
+              ;;
+            develop)
+              npm run deploy:staging
+              ;;
+            *)
+              echo 'Skipping deployment.'
+              ;;
+          esac
 
 workflows:
   version: 2
