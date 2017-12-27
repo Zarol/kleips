@@ -28,7 +28,7 @@ jobs:
 
       - run:
         name: Build
-        command: |
+        command: >
           case $CIRCLE_BRANCH in
             master)
               npm run build:production
@@ -48,7 +48,7 @@ jobs:
     steps:
       - run:
         name: Deploy
-        command: |
+        command: >
           case $CIRCLE_BRANCH in
             master)
               npm run deploy:production
