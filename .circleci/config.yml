@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:latest
-
+    working_directory: ~/kleips
     steps:
       - checkout
 
@@ -23,8 +23,6 @@ jobs:
 
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
 
       - run:
           command: |
@@ -40,11 +38,19 @@ jobs:
               ;;
             esac
 
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/kleips
+
   deploy:
     docker:
       - image: circleci/node:latest
-
+    working_directory: ~/kleips
     steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+
       - run:
           command: |
             case $CIRCLE_BRANCH in
