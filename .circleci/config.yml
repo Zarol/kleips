@@ -27,8 +27,8 @@ jobs:
             - ./node_modules
 
       - run:
-        command: |
-          case $CIRCLE_BRANCH in
+          command: |
+            case $CIRCLE_BRANCH in
             master)
               npm run build:production
               ;;
@@ -38,7 +38,7 @@ jobs:
             *)
               npm run build:dev
               ;;
-          esac
+            esac
 
   deploy:
     docker:
@@ -46,8 +46,9 @@ jobs:
 
     steps:
       - run:
-        command: |
-          case $CIRCLE_BRANCH in
+          name: Deploy
+          command: |
+            case $CIRCLE_BRANCH in
             master)
               npm run deploy:production
               ;;
@@ -57,7 +58,7 @@ jobs:
             *)
               echo 'Skipping deployment.'
               ;;
-          esac
+            esac
 
 workflows:
   version: 2
