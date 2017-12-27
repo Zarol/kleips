@@ -40,8 +40,11 @@
     "s3upload": "node build_scripts/s3-upload.js",
     "s3upload:staging": "npm run s3upload -- staging",
     "s3upload:prod": "npm run s3upload -- prod",
-    "start": "npm run shell:clean && npm run shell:generate && npm run sitemap:dev && npm run robotstxt:dev && npm run shell:server",
-    "staging": "npm run shell:clean && npm run shell:generate && npm run sitemap:staging && npm run robotstxt:staging && npm run s3upload:staging",
-    "production": "npm run shell:clean && npm run shell:generate && npm run sitemap:prod && npm run robotstxt:prod && npm run s3upload:prod"
+    "build:dev": "npm run shell:clean && npm run shell:generate && npm run sitemap:dev && npm run robotstxt:dev",
+    "build:staging": "npm run shell:clean && npm run shell:generate && npm run sitemap:staging && npm run robotstxt:staging",
+    "build:production": "npm run shell:clean && npm run shell:generate && npm run sitemap:prod && npm run robotstxt:prod",
+    "deploy:staging": "npm run s3upload:staging",
+    "deploy:production": "npm run s3upload:production",
+    "start": "npm run build:dev && npm run shell:server"
   }
 }

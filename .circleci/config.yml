@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:latest
 
     steps:
       - checkout
@@ -14,12 +14,60 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
 
-      - run: sudo npm install -g hexo-cli
-      - run: sudo npm install
+      - run:
+          name: Install Hexo-CLI
+          command: sudo npm install -g hexo-cli
+      - run:
+          name: Install Dependencies
+          command: sudo npm install
 
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
 
-      - run: npm run production
+      - run:
+        name: Build
+        command: |
+          case $CIRCLE_BRANCH in
+            master)
+              npm run build:production
+              ;;
+            develop)
+              npm run build:staging
+              ;;
+            *)
+              npm run build:dev
+              ;;
+          esac
+
+  deploy:
+    steps:
+      - run:
+        name: Deploy
+        command: |
+          case $CIRCLE_BRANCH in
+              master)
+                npm run deploy:production
+                ;;
+              develop)
+                npm run deploy:staging
+                ;;
+              *)
+                echo 'Skipping deployment.'
+                ;;
+            esac
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - develop
