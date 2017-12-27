@@ -12,7 +12,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Install Hexo-CLI
@@ -22,11 +22,12 @@ jobs:
           command: sudo npm install
 
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - ~/kleips/node_modules
 
       - run:
+          name: Build based on Banch
           command: |
             case $CIRCLE_BRANCH in
             master)
@@ -54,6 +55,7 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
 
       - run:
+          name: Deploy based on Banch
           command: |
             case $CIRCLE_BRANCH in
             master)
