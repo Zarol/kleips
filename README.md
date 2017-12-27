@@ -15,7 +15,7 @@ npm start
 ```
 
 ## Deployment
-Current deployment generates all related files to the `public/` folder and uploads it to my S3 bucket. The AWS creditentials are stored via [AWS environment variables](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html). Deployment has also been integrated to CircleCI.
+Current deployment generates all related files to the `public/` folder and uploads it to my S3 bucket. The AWS creditentials are stored via [AWS environment variables](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html). Deployment has also been integrated into CircleCI.
 
 ### [Staging](http://staging.kleips.com)
 This environment doesn't sit behind CloudFront so updates are immediately visible. CircleCI will also automatically deploy any changes made to the `develop` branch to staging. This probably shouldn't be publicly accessible, but it's just a static site.
