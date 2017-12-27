@@ -23,6 +23,8 @@ jobs:
 
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ~/kleips/node_modules
 
       - run:
           command: |
