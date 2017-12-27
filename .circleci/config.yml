@@ -46,7 +46,6 @@ jobs:
 
     steps:
       - run:
-          name: Deploy
           command: |
             case $CIRCLE_BRANCH in
             master)
