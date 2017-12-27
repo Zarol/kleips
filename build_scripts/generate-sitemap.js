@@ -84,7 +84,7 @@ async function main() {
     if (err) {
       return console.log(err);
     }
-    console.log(chalk.green('INFO  ') + 'Generated: ' + chalk.red('sitemap.xml'));
+    console.log(chalk.green('INFO  ') + 'Generated: ' + chalk.magenta('sitemap.xml'));
   });
 }
 

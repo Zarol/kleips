@@ -15,7 +15,7 @@ function uploadFile(bucket, key, content) {
     CacheControl: 'max-age=630720000, public',
     Expires: new Date(Date.now() + 63072000000)
   }, (res) => {
-    console.log(chalk.green('INFO  ') + 'Uploaded: ' + chalk.red(key));
+    console.log(chalk.green('INFO  ') + 'Uploaded: ' + chalk.magenta(key));
   });
 }
 

@@ -41,7 +41,7 @@ async function main() {
     if (err) {
       return console.log(err);
     }
-    console.log(chalk.green('INFO  ') + 'Generated: ' + chalk.red('robots.txt'));
+    console.log(chalk.green('INFO  ') + 'Generated: ' + chalk.magenta('robots.txt'));
   });
 }
 
