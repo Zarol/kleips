@@ -5,6 +5,9 @@
   "hexo": {
     "version": "3.4.4"
   },
+  "engines" : {
+    "node" : ">=7.6.0"
+  },
   "dependencies": {
     "aws-sdk": "2.175.0",
     "chalk": "^2.3.0",
