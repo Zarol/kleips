@@ -44,7 +44,7 @@
     "build:staging": "npm run shell:clean && npm run shell:generate && npm run sitemap:staging && npm run robotstxt:staging",
     "build:production": "npm run shell:clean && npm run shell:generate && npm run sitemap:prod && npm run robotstxt:prod",
     "deploy:staging": "npm run s3upload:staging",
-    "deploy:production": "npm run s3upload:production",
+    "deploy:production": "npm run s3upload:prod",
     "start": "npm run build:dev && npm run shell:server"
   }
 }
